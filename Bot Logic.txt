@@ -1,0 +1,18 @@
+frontend [User Experience] -> changes a lot based on user feedbacks
+backend [Best solution available] -> does not hange much
+
+
+Process WF
+If Retreaver
+	Retry scope[2] (if successful we will move out of retry)
+		Invoke Retreaver_Login
+	If Login Successful?
+		YES- Then Invoke Retreaver_Extract [without retyr scope]
+			If Invoke_Extract successful? (retreaver.csv file exist)
+				YES- Invoke Upload to SHarePoint & MSSQL Bulk Insert (Parallel Execution)
+					IF NO ERROR- Mark Transaction as Sucess
+					IF ERROR- Mark Transaction as Fail 
+				NO- Mark Transaction as Failure  
+		NO- Mark Transaction as Failure 
+	
+
